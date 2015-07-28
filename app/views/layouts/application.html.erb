@@ -2,13 +2,204 @@
 <html>
 <head>
   <title>RockPaperScissorsHomework</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
+  <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css">
 </head>
 <body>
 
+<div class="container">
+  <hr>
+
+  <div class="row">
+    <div class="col-md-4">
+      <a href="/play/rock" class="btn btn-warning btn-block btn-lg">Play rock.</a>
+    </div>
+
+    <div class="col-md-4">
+      <a href="/play/paper" class="btn btn-warning btn-block btn-lg">Play paper.</a>
+    </div>
+
+    <div class="col-md-4">
+      <a href="/play/scissors" class="btn btn-warning btn-block btn-lg">Play scissors.</a>
+    </div>
+  </div>
+
+  <hr>
+
 <%= yield %>
+
+<div class="col-md-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h5 class="panel-title">Summary</h5>
+      </div>
+
+      <table class="table table-hover table-striped">
+        <tr>
+          <th>When you played</th>
+          <th>you won</th>
+          <th>you lost</th>
+          <th>you tied</th>
+        </tr>
+
+        <tr>
+          <td>rock</td>
+          <td><%= @you_played_rock_and_won%></td>
+          <td><%= @you_played_rock_and_lost %></td>
+          <td><%= @you_played_rock_and_tied %></td>
+        </tr>
+
+        <tr>
+          <td>paper</td>
+          <td><%= @you_played_paper_and_won%></td>
+          <td><%= @you_played_paper_and_lost%></td>
+          <td><%= @you_played_paper_and_tied%></td>
+        </tr>
+
+        <tr>
+          <td>scissors</td>
+          <td><%= @you_played_scissors_and_won%></td>
+          <td><%= @you_played_scissors_and_lost%></td>
+          <td><%= @you_played_scissors_and_tied%></td>
+        </tr>
+
+        <tr>
+          <th>Total</th>
+          <th><%= @you_won%></th>
+          <th><%= @you_lost%></th>
+          <th><%= @you_tied%></th>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h5 class="panel-title">
+          Complete history
+          (<%= @total_entries%>)
+        </h5>
+      </div>
+
+      <table class="table table-hover table-striped">
+        <tr>
+          <th>User Move</th>
+          <th>Computer Move</th>
+          <th>User Wins</th>
+          <th>Computer Wins</th>
+          <th>Tie</th>
+        </tr>
+
+        <% if @data.nil? %>
+          <tr>
+          </tr>
+        <% else %>
+            <% @data.each do |s| %>
+              <tr>
+               <td>
+                 <%= s.user_move %>
+               </td>
+               <td>
+                  <%= s.computer_move %>
+                </td>
+                <td>
+                  <%= s.user_wins %>
+                </td>
+                <td>
+                  <%= s.computer_wins %>
+                </td>
+                <td>
+                  <%= s.tie %>
+                </td>
+              </tr>
+            <% end %>
+        <% end %>
+
+          <!-- <tr>
+            <td>rock</td>
+            <td>scissors</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>rock</td>
+            <td>rock</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>rock</td>
+            <td>scissors</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>paper</td>
+            <td>paper</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>scissors</td>
+            <td>rock</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>scissors</td>
+            <td>scissors</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>scissors</td>
+            <td>scissors</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>scissors</td>
+            <td>paper</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>scissors</td>
+            <td>rock</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>paper</td>
+            <td>scissors</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>rock</td>
+            <td>scissors</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+          </tr> -->
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>
 
 </body>
 </html>
